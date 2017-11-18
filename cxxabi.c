@@ -8,14 +8,18 @@
 #include <linux/kernel.h>
 
 void __cxa_pure_virtual(void) {
+  printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
 }
 
 void __cxa_guard_abort(void *p) {
+  printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
 }
 
 int __cxa_guard_acquire(void *p) {
+  printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
   return 0;
 }
 
 void __cxa_guard_release(void *p) {
+  printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
 }
