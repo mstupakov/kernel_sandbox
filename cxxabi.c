@@ -7,6 +7,8 @@
 
 #include <linux/kernel.h>
 
+void *__dso_handle = 0;
+
 void __cxa_pure_virtual(void) {
   printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
 }
@@ -22,4 +24,9 @@ int __cxa_guard_acquire(void *p) {
 
 void __cxa_guard_release(void *p) {
   printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
+}
+
+int __cxa_atexit(void (*f) (void*), void *arg, void *dso_handle) {
+  printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
+  return 0;
 }

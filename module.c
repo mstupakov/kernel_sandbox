@@ -11,9 +11,14 @@
 
 #include "cxx_module.h"
 
+extern void __do_global_init(void);
+extern void __do_global_fini(void);
+
 int __init kmodule_init(void)
 {
   printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
+
+  __do_global_init();
   cxx_module_init();
 
   return 0;
@@ -22,7 +27,9 @@ int __init kmodule_init(void)
 void __exit kmodule_exit(void)
 {
   printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
+
   cxx_module_exit();
+  __do_global_fini();
 }
 
 module_init(kmodule_init);

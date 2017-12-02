@@ -60,6 +60,10 @@ class Derived : public Base<T> {
     }
 };
 
+Derived<char> g_object_1;
+Derived<char> g_object_2;
+Derived<char> g_object_3;
+
 void cxx_module_init(void) {
   printk("! Enter: %s\n", __PRETTY_FUNCTION__);
 
