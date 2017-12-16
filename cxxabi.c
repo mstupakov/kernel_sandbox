@@ -28,7 +28,7 @@ void __cxa_guard_abort(void *p) {
 
 int __cxa_guard_acquire(void *p) {
   printk(KERN_INFO "! Enter: %s\n", __FUNCTION__);
-  return 0;
+  return 1;
 }
 
 void __cxa_guard_release(void *p) {

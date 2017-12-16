@@ -76,6 +76,9 @@ void cxx_module_init(void) {
 
   object_1.base_method();
   object_1.derived_method();
+
+  static Derived<short> s_object_1;
+  static Derived<short> s_object_2;
 }
 
 void cxx_module_exit(void) {
