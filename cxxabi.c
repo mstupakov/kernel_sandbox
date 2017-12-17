@@ -8,6 +8,8 @@
 #include <linux/kernel.h>
 #include <linux/slab.h>
 
+#include "memory.h"
+
 void *__dso_handle = 0;
 
 static struct atexit_t {
@@ -36,7 +38,7 @@ void __cxa_guard_release(void *p) {
 }
 
 int __cxa_atexit(void (*cb)(void*), void *arg, void *dso_handle) {
-  struct atexit_t *p = kmalloc(sizeof(struct atexit_t), GFP_KERNEL);
+  struct atexit_t *p = malloc(sizeof(struct atexit_t));
   if (!p) {
     return -1;
   }
@@ -60,7 +62,7 @@ void __cxa_finalize(void *dso_handle) {
     p->cb(p->arg);
     p = p->next;
 
-    kfree(f);
+    free(f);
   }
 
   head = 0;

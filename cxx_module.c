@@ -10,6 +10,8 @@
 
 template<typename T>
 class Base {
+  volatile T m_value;
+
   public:
     Base() {
       printk("! Enter: %s\n", __PRETTY_FUNCTION__);
@@ -31,6 +33,11 @@ class Base {
 
     void base_method() {
       printk("! Enter: %s\n", __PRETTY_FUNCTION__);
+    }
+
+    void set(T value) {
+      printk("! Enter: %s\n", __PRETTY_FUNCTION__);
+      m_value = value;
     }
 };
 
@@ -79,6 +86,15 @@ void cxx_module_init(void) {
 
   static Derived<short> s_object_1;
   static Derived<short> s_object_2;
+
+  Derived<int> *p_1 = new Derived<int>;
+  p_1->set(5);
+
+  Derived<int> *p_2 = new Derived<int>[1];
+  p_2->set(5);
+
+  delete p_1;
+  delete [] p_2;
 }
 
 void cxx_module_exit(void) {
